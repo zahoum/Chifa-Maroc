@@ -1,0 +1,162 @@
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  include(lang/ar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ChifaMaroc\index.php on line 3
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  include(): Failed opening 'lang/ar.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ChifaMaroc\index.php on line 3
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  include(lang/ar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ChifaMaroc\index.php on line 12
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  include(): Failed opening 'lang/ar.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ChifaMaroc\index.php on line 12
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "home" in C:\xampp\htdocs\ChifaMaroc\index.php on line 316
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 317
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies" in C:\xampp\htdocs\ChifaMaroc\index.php on line 318
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "sign_in" in C:\xampp\htdocs\ChifaMaroc\index.php on line 329
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "sign_up" in C:\xampp\htdocs\ChifaMaroc\index.php on line 330
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "hero_title" in C:\xampp\htdocs\ChifaMaroc\index.php on line 354
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "hero_description" in C:\xampp\htdocs\ChifaMaroc\index.php on line 355
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "get_treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 357
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "find_clinics" in C:\xampp\htdocs\ChifaMaroc\index.php on line 358
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "our_services" in C:\xampp\htdocs\ChifaMaroc\index.php on line 374
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 378
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 379
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies" in C:\xampp\htdocs\ChifaMaroc\index.php on line 383
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 384
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "export_pdf" in C:\xampp\htdocs\ChifaMaroc\index.php on line 388
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "export_pdf_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 389
+[07-Nov-2025 10:24:46 Africa/Casablanca] PHP Warning:  Undefined array key "all_rights_reserved" in C:\xampp\htdocs\ChifaMaroc\index.php on line 396
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  include(lang/ar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ChifaMaroc\index.php on line 3
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  include(): Failed opening 'lang/ar.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ChifaMaroc\index.php on line 3
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  include(lang/ar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ChifaMaroc\index.php on line 12
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  include(): Failed opening 'lang/ar.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ChifaMaroc\index.php on line 12
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "home" in C:\xampp\htdocs\ChifaMaroc\index.php on line 316
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 317
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies" in C:\xampp\htdocs\ChifaMaroc\index.php on line 318
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "sign_in" in C:\xampp\htdocs\ChifaMaroc\index.php on line 329
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "sign_up" in C:\xampp\htdocs\ChifaMaroc\index.php on line 330
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "hero_title" in C:\xampp\htdocs\ChifaMaroc\index.php on line 354
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "hero_description" in C:\xampp\htdocs\ChifaMaroc\index.php on line 355
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "get_treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 357
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "find_clinics" in C:\xampp\htdocs\ChifaMaroc\index.php on line 358
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "our_services" in C:\xampp\htdocs\ChifaMaroc\index.php on line 374
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 378
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 379
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies" in C:\xampp\htdocs\ChifaMaroc\index.php on line 383
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 384
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "export_pdf" in C:\xampp\htdocs\ChifaMaroc\index.php on line 388
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "export_pdf_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 389
+[07-Nov-2025 10:24:57 Africa/Casablanca] PHP Warning:  Undefined array key "all_rights_reserved" in C:\xampp\htdocs\ChifaMaroc\index.php on line 396
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  include(lang/ar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ChifaMaroc\index.php on line 3
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  include(): Failed opening 'lang/ar.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ChifaMaroc\index.php on line 3
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  include(lang/ar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ChifaMaroc\index.php on line 12
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  include(): Failed opening 'lang/ar.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ChifaMaroc\index.php on line 12
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "home" in C:\xampp\htdocs\ChifaMaroc\index.php on line 316
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 317
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies" in C:\xampp\htdocs\ChifaMaroc\index.php on line 318
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "sign_in" in C:\xampp\htdocs\ChifaMaroc\index.php on line 329
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "sign_up" in C:\xampp\htdocs\ChifaMaroc\index.php on line 330
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "hero_title" in C:\xampp\htdocs\ChifaMaroc\index.php on line 354
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "hero_description" in C:\xampp\htdocs\ChifaMaroc\index.php on line 355
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "get_treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 357
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "find_clinics" in C:\xampp\htdocs\ChifaMaroc\index.php on line 358
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "our_services" in C:\xampp\htdocs\ChifaMaroc\index.php on line 374
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan" in C:\xampp\htdocs\ChifaMaroc\index.php on line 378
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "treatment_plan_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 379
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies" in C:\xampp\htdocs\ChifaMaroc\index.php on line 383
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "clinics_pharmacies_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 384
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "export_pdf" in C:\xampp\htdocs\ChifaMaroc\index.php on line 388
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "export_pdf_desc" in C:\xampp\htdocs\ChifaMaroc\index.php on line 389
+[07-Nov-2025 10:26:34 Africa/Casablanca] PHP Warning:  Undefined array key "all_rights_reserved" in C:\xampp\htdocs\ChifaMaroc\index.php on line 396
+[07-Nov-2025 10:32:04 Africa/Casablanca] Database connection failed: SQLSTATE[HY000] [1049] Unknown database 'chifamaroc'
+[07-Nov-2025 12:19:20 Europe/Berlin] PHP Warning:  Constant BASE_URL already defined in C:\xampp\htdocs\ChifaMaroc\config.php on line 69
+[07-Nov-2025 12:19:26 Europe/Berlin] PHP Warning:  Constant BASE_URL already defined in C:\xampp\htdocs\ChifaMaroc\config.php on line 69
+[07-Nov-2025 12:50:28 Africa/Casablanca] PHP Fatal error:  Uncaught Error: Call to undefined function validatePassword() in C:\xampp\htdocs\ChifaMaroc\register.php:33
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ChifaMaroc\register.php on line 33
+[07-Nov-2025 13:00:19 Africa/Casablanca] PHP Fatal error:  Uncaught Error: Undefined constant "ADMIN_USERNAME" in C:\xampp\htdocs\ChifaMaroc\admin\admin_login.php:20
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ChifaMaroc\admin\admin_login.php on line 20
+[07-Nov-2025 17:19:25 Africa/Casablanca] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 24
+[07-Nov-2025 17:19:25 Africa/Casablanca] User logged in - ID: 
+[07-Nov-2025 17:19:27 Africa/Casablanca] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 24
+[07-Nov-2025 17:19:27 Africa/Casablanca] User logged in - ID: 
+[07-Nov-2025 17:20:38 Africa/Casablanca] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 24
+[07-Nov-2025 17:20:38 Africa/Casablanca] User logged in - ID: 
+[07-Nov-2025 17:23:11 Africa/Casablanca] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 24
+[07-Nov-2025 17:23:11 Africa/Casablanca] User logged in - ID: 
+[07-Nov-2025 17:23:46 Africa/Casablanca] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 24
+[07-Nov-2025 17:23:46 Africa/Casablanca] User logged in - ID: 
+[07-Nov-2025 17:26:42 Africa/Casablanca] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 24
+[07-Nov-2025 17:26:42 Africa/Casablanca] User logged in - ID: 
+[07-Nov-2025 17:34:54 Africa/Casablanca] PHP Warning:  Undefined array key "user_id" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 24
+[07-Nov-2025 17:34:54 Africa/Casablanca] User logged in - ID: 
+[09-Nov-2025 22:10:47 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 22:11:23 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 22:12:37 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 22:12:41 Africa/Casablanca] User accessing profile - ID: 2
+[09-Nov-2025 22:13:23 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 22:13:30 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 22:13:51 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 22:15:12 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 22:15:16 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:13:03 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:13:03 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:13:03 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 689
+[09-Nov-2025 23:13:49 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:13:49 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:13:49 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 689
+[09-Nov-2025 23:23:20 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:23:20 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:23:20 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:23:20 Africa/Casablanca] PHP Warning:  Undefined array key "short_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 691
+[09-Nov-2025 23:23:20 Africa/Casablanca] PHP Warning:  Undefined array key "long_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 692
+[09-Nov-2025 23:23:21 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:23:21 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:23:21 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:23:21 Africa/Casablanca] PHP Warning:  Undefined array key "short_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 691
+[09-Nov-2025 23:23:21 Africa/Casablanca] PHP Warning:  Undefined array key "long_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 692
+[09-Nov-2025 23:23:22 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:23:22 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:23:22 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:23:22 Africa/Casablanca] PHP Warning:  Undefined array key "short_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 691
+[09-Nov-2025 23:23:22 Africa/Casablanca] PHP Warning:  Undefined array key "long_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 692
+[09-Nov-2025 23:23:23 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "short_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 691
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "long_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 692
+[09-Nov-2025 23:23:23 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "short_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 691
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "long_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 692
+[09-Nov-2025 23:23:23 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "short_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 691
+[09-Nov-2025 23:23:23 Africa/Casablanca] PHP Warning:  Undefined array key "long_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 692
+[09-Nov-2025 23:23:24 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:23:24 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:23:24 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:23:24 Africa/Casablanca] PHP Warning:  Undefined array key "short_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 691
+[09-Nov-2025 23:23:24 Africa/Casablanca] PHP Warning:  Undefined array key "long_term" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 692
+[09-Nov-2025 23:23:43 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:23:43 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:23:43 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:38:23 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:38:23 Africa/Casablanca] Error creating treatment plan: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'vitamins_supplements' in 'field list'
+[09-Nov-2025 23:38:23 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:38:23 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:38:31 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:38:31 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:38:31 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:39:31 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:39:31 Africa/Casablanca] Error creating treatment plan: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'vitamins_supplements' in 'field list'
+[09-Nov-2025 23:39:31 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:39:31 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:39:37 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:39:37 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:39:37 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:45:38 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:45:38 Africa/Casablanca] Error creating treatment plan: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'vitamins_supplements' in 'field list'
+[09-Nov-2025 23:45:38 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:45:38 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[09-Nov-2025 23:45:41 Africa/Casablanca] User accessing plan - ID: 2
+[09-Nov-2025 23:45:41 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[09-Nov-2025 23:45:41 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
