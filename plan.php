@@ -674,7 +674,7 @@ function generateTreatmentPlanDisplay($plan_data) {
                 <div class="form-group">
                     <label for="condition"><?= $lang['health_condition'] ?></label>
                     <select id="condition" name="condition" class="form-control" required>
-                        <option value=""><?= $lang['select_health_condition'] ?></option>
+                        <option value="none"><?= $lang['select_health_condition'] ?></option>
                         <option value="good" <?= (isset($_POST['condition']) && $_POST['condition'] == 'good') ? 'selected' : '' ?>><?= $lang['good_health'] ?></option>
                         <option value="average" <?= (isset($_POST['condition']) && $_POST['condition'] == 'average') ? 'selected' : '' ?>><?= $lang['average_health'] ?></option>
                         <option value="poor" <?= (isset($_POST['condition']) && $_POST['condition'] == 'poor') ? 'selected' : '' ?>><?= $lang['poor_health'] ?></option>

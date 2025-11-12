@@ -160,3 +160,45 @@ Stack trace:
 [09-Nov-2025 23:45:41 Africa/Casablanca] User accessing plan - ID: 2
 [09-Nov-2025 23:45:41 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
 [09-Nov-2025 23:45:41 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[12-Nov-2025 19:30:13 Africa/Casablanca] PHP Warning:  require_once(../fpdf/fpdf.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ChifaMaroc\ajax\export_pdf.php on line 4
+[12-Nov-2025 19:30:13 Africa/Casablanca] PHP Fatal error:  Uncaught Error: Failed opening required '../fpdf/fpdf.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ChifaMaroc\ajax\export_pdf.php:4
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ChifaMaroc\ajax\export_pdf.php on line 4
+[12-Nov-2025 19:46:03 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:46:03 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[12-Nov-2025 19:46:03 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[12-Nov-2025 19:47:35 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:47:57 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:47:57 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[12-Nov-2025 19:47:57 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[12-Nov-2025 19:47:58 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:47:58 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[12-Nov-2025 19:47:58 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[12-Nov-2025 19:48:33 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:48:33 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[12-Nov-2025 19:48:33 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[12-Nov-2025 19:48:34 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:48:34 Africa/Casablanca] PHP Warning:  Undefined array key "select_health_condition" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 677
+[12-Nov-2025 19:48:34 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[12-Nov-2025 19:49:42 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:49:42 Africa/Casablanca] PHP Warning:  Undefined array key "select_duration" in C:\xampp\htdocs\ChifaMaroc\plan.php on line 690
+[12-Nov-2025 19:52:18 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:52:45 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:52:45 Africa/Casablanca] Error creating treatment plan: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'vitamins_supplements' in 'field list'
+[12-Nov-2025 19:53:06 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 19:53:06 Africa/Casablanca] Error creating treatment plan: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'vitamins_supplements' in 'field list'
+[12-Nov-2025 20:04:49 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:08:40 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:08:58 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:12:28 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:12:39 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:13:27 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:13:35 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:18:04 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:18:18 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:21:27 Africa/Casablanca] User accessing profile - ID: 2
+[12-Nov-2025 20:22:11 Africa/Casablanca] User accessing profile - ID: 2
+[12-Nov-2025 20:22:56 Africa/Casablanca] User accessing profile - ID: 2
+[12-Nov-2025 20:23:00 Africa/Casablanca] User accessing profile - ID: 2
+[12-Nov-2025 20:23:25 Africa/Casablanca] User accessing plan - ID: 2

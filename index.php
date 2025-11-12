@@ -119,21 +119,22 @@ if (isLoggedIn()) {
       }
       .logout-btn {
         padding: 8px 16px;
-        background: #ea4335;
-        color: white;
+        color: black;
         border-radius: 4px;
         text-decoration: none;
         font-weight: 500;
         transition: background 0.3s;
+        
       }
       .logout-btn:hover { 
-        background: #d32f2f; 
+        background: #ec9c9cff; 
+        border-radius:20px;
       }
       .profile-btn {
         padding: 8px 16px;
         background: #34a853;
         color: white;
-        border-radius: 4px;
+        border-radius: 20px;
         text-decoration: none;
         font-weight: 500;
         transition: background 0.3s;
@@ -141,6 +142,7 @@ if (isLoggedIn()) {
       }
       .profile-btn:hover { 
         background: #64c47dff; 
+        border-radius: 20px;
       }
       .language-selector select {
         padding: 8px 12px;

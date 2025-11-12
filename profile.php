@@ -120,6 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_medical'])) {
             padding: 0 20px;
         }
         
+        
         .profile-header {
             background: white;
             padding: 30px;

@@ -256,44 +256,21 @@ $userInfo = isset($_SESSION['user_info']) ? $_SESSION['user_info'] : null;
         <button onclick="window.print()" style="padding: 10px 20px; background: #4285f4; color: white; border: none; border-radius: 5px; cursor: pointer;">
             <i class="fas fa-print"></i> طباعة التقرير
         </button>
-        <button onclick="generatePDF()" style="padding: 10px 20px; background: #34a853; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
-            <i class="fas fa-download"></i> تحميل كملف PDF
-        </button>
-        <button onclick="window.close()" style="padding: 10px 20px; background: #ea4335; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
-            <i class="fas fa-times"></i> إغلاق النافذة
-        </button>
+        <button onclick="redirectToClinics()" style="padding: 10px 20px; background: #ea4335; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+    <i class="fas fa-times"></i> العودة للقائمة
+</button>
     </div>
     
     <script>
-        function generatePDF() {
-            // إرسال طلب لإنشاء PDF
-            fetch('ajax/export_pdf.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'type=clinics&data=' + encodeURIComponent(JSON.stringify(<?php echo json_encode($locations); ?>))
-            })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = 'clinics_report_<?php echo date('Y-m-d'); ?>.pdf';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-            })
-            .catch(error => {
-                console.error('Error generating PDF:', error);
-                alert('حدث خطأ أثناء إنشاء ملف PDF');
-            });
-        }
+        function redirectToClinics() {
+            window.history.back() ;
+            }
 
         // طباعة تلقائية عند فتح الصفحة
         window.onload = function() {
             // يمكن تفعيل الطباعة التلقائية إذا رغبت
+            //i left this open for the peaple how want to devoloped my project in the futur if i'm died 
+            //so dont forget us to support with stars in github "zahoum" 
             // window.print();
         };
 

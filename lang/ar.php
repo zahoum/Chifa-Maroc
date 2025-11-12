@@ -1,6 +1,9 @@
 
 <?php
 $lang = [
+
+    'select_health_condition' => 'إختر الحالة المرضية',
+    'select_duration' => 'إختر التوقيت',
     // General
     'home' => 'الرئيسية',
     'welcome' => 'مرحباً',
