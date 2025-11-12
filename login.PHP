@@ -229,6 +229,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text-decoration: none;
             font-size: 14px;
         }
+        .backMenu {
+            text-decoration:none ;
+            position:absolute;
+            right:50%;
+            top:76%;
+
+        }
         
         .admin-link a:hover {
             color: #4285f4;
@@ -302,7 +309,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="register-link">
             <p>ليس لديك حساب؟ <a href="register.php">إنشاء حساب جديد</a></p>
         </div>
-        
+        <div class="backMenu">
+            <p> <a href="./">العودة</a></p>
+        </div>
         <div class="admin-link">
             <a href="admin/admin_login.php">دخول المسؤول</a>
         </div>

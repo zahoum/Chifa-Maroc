@@ -202,3 +202,88 @@ Stack trace:
 [12-Nov-2025 20:22:56 Africa/Casablanca] User accessing profile - ID: 2
 [12-Nov-2025 20:23:00 Africa/Casablanca] User accessing profile - ID: 2
 [12-Nov-2025 20:23:25 Africa/Casablanca] User accessing plan - ID: 2
+[12-Nov-2025 20:36:41 Africa/Casablanca] User accessing profile - ID: 1
+[12-Nov-2025 20:36:45 Africa/Casablanca] User accessing plan - ID: 1
+[12-Nov-2025 20:36:57 Africa/Casablanca] User accessing plan - ID: 1
+[12-Nov-2025 21:02:17 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:03:55 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:06:01 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:06:35 Africa/Casablanca] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 155
+[12-Nov-2025 21:13:05 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:16:40 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:16:44 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:17:03 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:18:12 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:19:54 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:09 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:21 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:26 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:34 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:36 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:37 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:38 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:39 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:41 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:20:42 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:21:38 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:22:55 Africa/Casablanca] Error fetching reports: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[12-Nov-2025 21:35:02 Africa/Casablanca] PHP Warning:  Constant EMAIL_HOST already defined in C:\xampp\htdocs\ChifaMaroc\config.php on line 281
+[12-Nov-2025 21:35:02 Africa/Casablanca] PHP Warning:  Constant EMAIL_PORT already defined in C:\xampp\htdocs\ChifaMaroc\config.php on line 282
+[12-Nov-2025 21:35:02 Africa/Casablanca] PHP Warning:  Constant EMAIL_FROM already defined in C:\xampp\htdocs\ChifaMaroc\config.php on line 283
+[12-Nov-2025 21:35:02 Africa/Casablanca] PHP Warning:  Constant EMAIL_FROM_NAME already defined in C:\xampp\htdocs\ChifaMaroc\config.php on line 284
+[12-Nov-2025 21:52:23 Africa/Casablanca] PHP Warning:  mail(): Failed to connect to mailserver at &quot;aissazhoum6@gmail.com&quot; port 587, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:52:23 Africa/Casablanca] PHP Warning:  mail(): Failed to connect to mailserver at &quot;aissazhoum6@gmail.com&quot; port 587, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:53:52 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. ffacd0b85a97d-42ac677ab75sm34958044f8f.35 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:53:53 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. 5b1f17b1804b1-4778bb572a0sm4835045e9.6 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:54:16 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. ffacd0b85a97d-42b2e052f32sm29475807f8f.17 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:54:32 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. ffacd0b85a97d-42ac679d544sm37434019f8f.46 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:54:33 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. 5b1f17b1804b1-47787e3a62esm54690605e9.3 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:54:34 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. 5b1f17b1804b1-47787e58bf8sm53928725e9.11 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:54:34 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. ffacd0b85a97d-42ac677abeasm36728007f8f.33 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:56:33 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. ffacd0b85a97d-42abe62b23csm35202757f8f.10 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:56:34 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. ffacd0b85a97d-42b52d59caasm524316f8f.42 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 21:56:45 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. 5b1f17b1804b1-4778bcf9685sm4168975e9.3 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 363
+[12-Nov-2025 22:01:58 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. ffacd0b85a97d-42b52f3f7d4sm391968f8f.11 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 394
+[12-Nov-2025 22:01:58 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. 5b1f17b1804b1-4778bcf9f83sm4186545e9.4 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 394
+[12-Nov-2025 22:14:38 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. ffacd0b85a97d-42abe63df69sm36249741f8f.13 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 462
+[12-Nov-2025 22:14:39 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. 5b1f17b1804b1-4778bb34278sm5200865e9.4 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 462
+[12-Nov-2025 22:14:44 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. 5b1f17b1804b1-47787e58bf8sm54575355e9.11 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 462
+[12-Nov-2025 22:14:44 Africa/Casablanca] PHP Warning:  mail(): SMTP server response: 530-5.7.0 Must issue a STARTTLS command first. For more information, go to
+530-5.7.0  https://support.google.com/a/answer/3221692 and review RFC 3207
+530 5.7.0 specifications. 5b1f17b1804b1-47787e3a656sm55018425e9.2 - gsmtp in C:\xampp\htdocs\ChifaMaroc\admin\system_settings.php on line 462
+[12-Nov-2025 22:57:46 Africa/Casablanca] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\ChifaMaroc\index.php on line 8
+[12-Nov-2025 22:57:49 Africa/Casablanca] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\ChifaMaroc\index.php on line 8
+[12-Nov-2025 22:57:49 Africa/Casablanca] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\ChifaMaroc\index.php on line 8
+[12-Nov-2025 22:57:50 Africa/Casablanca] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\ChifaMaroc\index.php on line 8
+[12-Nov-2025 22:58:04 Africa/Casablanca] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\ChifaMaroc\index.php on line 8
+[12-Nov-2025 22:58:10 Africa/Casablanca] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\ChifaMaroc\index.php on line 8

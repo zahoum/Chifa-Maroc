@@ -21,6 +21,34 @@ if (!isset($lang['welcome'])) {
 if (isLoggedIn()) {
     logUserActivity($_SESSION['user_id'], 'homepage_visit', 'زيارة الصفحة الرئيسية');
 }
+
+// جلب إشعارات المستخدم - الجديد
+$user_notifications = [];
+if (isLoggedIn()) {
+    try {
+        $pdo = getDatabaseConnection();
+        $stmt = $pdo->prepare("SELECT * FROM notifications WHERE user_id = ? AND is_read = 0 ORDER BY created_at DESC LIMIT 5");
+        $stmt->execute([$_SESSION['user_id']]);
+        $user_notifications = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        error_log("Error fetching notifications: " . $e->getMessage());
+    }
+}
+
+// جلب حالة الصيانة من قاعدة البيانات
+$maintenance_mode = false;
+try {
+    $pdo = getDatabaseConnection();
+    $stmt = $pdo->prepare("SELECT setting_value FROM system_settings WHERE setting_key = 'maintenance_mode'");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result && $result['setting_value'] == '1') {
+        $maintenance_mode = true;
+    }
+} catch (PDOException $e) {
+    error_log("Error fetching maintenance mode: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -393,6 +421,151 @@ if (isLoggedIn()) {
         margin-top: 60px;
       }
 
+      /* إشعارات المسؤول - الجديد */
+      .notifications-container {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        z-index: 1000;
+        max-width: 400px;
+      }
+      
+      .notification-item {
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        border-left: 4px solid;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        animation: slideInRight 0.3s ease-out;
+      }
+      
+      .notification-info {
+        background: #d1ecf1;
+        border-color: #bee5eb;
+        color: #0c5460;
+      }
+      
+      .notification-success {
+        background: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+      }
+      
+      .notification-warning {
+        background: #fff3cd;
+        border-color: #ffeaa7;
+        color: #856404;
+      }
+      
+      .notification-error {
+        background: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+      }
+      
+      .notification-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 8px;
+      }
+      
+      .notification-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+      }
+      
+      .notification-close {
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        padding: 5px;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+      }
+      
+      .notification-close:hover {
+        opacity: 1;
+      }
+      
+      .notification-time {
+        color: inherit;
+        opacity: 0.7;
+        font-size: 12px;
+      }
+      
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* وضع الصيانة - مخفي افتراضياً */
+      .maintenance-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      
+      .maintenance-modal {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      }
+      
+      .maintenance-icon {
+        font-size: 80px;
+        color: #667eea;
+        margin-bottom: 20px;
+      }
+      
+      .maintenance-modal h2 {
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 28px;
+      }
+      
+      .maintenance-modal p {
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+      
+      .admin-login {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+      
+      .admin-login a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      
+      .admin-login a:hover {
+        text-decoration: underline;
+      }
+
       /* Responsive */
       @media (max-width: 768px) {
         .hamburger { display: flex; }
@@ -417,10 +590,31 @@ if (isLoggedIn()) {
         .hero-buttons { justify-content: center; }
         .circle-bg { width: 200px; height: 200px; }
         .circle-bg::before { width: 240px; height: 240px; }
+        .notifications-container {
+          right: 10px;
+          left: 10px;
+          max-width: none;
+        }
+        .maintenance-modal {
+          padding: 30px 20px;
+        }
       }
     </style>
 </head>
 <body>
+    <!-- وضع الصيانة - سيظهر عبر JavaScript -->
+    <div class="maintenance-overlay" id="maintenanceOverlay">
+        <div class="maintenance-modal">
+            <div class="maintenance-icon">🔧</div>
+            <h2>الموقع تحت الصيانة</h2>
+            <p>نعمل على تحسين الموقع لتقديم خدمة أفضل. سنعود قريباً!</p>
+            <p>نعتذر للإزعاج ونشكركم على صبركم.</p>
+            <div class="admin-login">
+                <a href="/admin/admin_login.php">دخول المسؤول</a>
+            </div>
+        </div>
+    </div>
+
     <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="nav-container">
@@ -487,9 +681,6 @@ if (isLoggedIn()) {
         </div>
     </section>
 
-    
-    
-
     <!-- الميزات -->
     <section class="features">
         <h2><?= $lang['our_services'] ?></h2>
@@ -512,6 +703,46 @@ if (isLoggedIn()) {
         </div>
     </section>
 
+    <!-- إشعارات المسؤول - الجديد -->
+    <?php if (isLoggedIn() && !empty($user_notifications)): ?>
+    <div class="notifications-container">
+        <?php foreach ($user_notifications as $notification): ?>
+            <?php
+            $notification_class = 'notification-info';
+            $notification_icon = 'fas fa-info-circle';
+            
+            switch($notification['type']) {
+                case 'success':
+                    $notification_class = 'notification-success';
+                    $notification_icon = 'fas fa-check-circle';
+                    break;
+                case 'warning':
+                    $notification_class = 'notification-warning';
+                    $notification_icon = 'fas fa-exclamation-triangle';
+                    break;
+                case 'error':
+                    $notification_class = 'notification-error';
+                    $notification_icon = 'fas fa-times-circle';
+                    break;
+            }
+            ?>
+            <div class="notification-item <?php echo $notification_class; ?>" id="notification-<?php echo $notification['id']; ?>">
+                <div class="notification-header">
+                    <div class="notification-title">
+                        <i class="<?php echo $notification_icon; ?>"></i>
+                        <span><?php echo htmlspecialchars($notification['title']); ?></span>
+                    </div>
+                    <button class="notification-close" onclick="markNotificationRead(<?php echo $notification['id']; ?>)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <p style="margin: 0 0 8px 0; font-size: 14px;"><?php echo htmlspecialchars($notification['message']); ?></p>
+                <small class="notification-time"><?php echo date('Y-m-d H:i', strtotime($notification['created_at'])); ?></small>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
     <!-- الفوتر -->
     <footer class="footer">
         <p>&copy; 2025 ChifaMaroc. <?= $lang['all_rights_reserved'] ?></p>
@@ -521,6 +752,63 @@ if (isLoggedIn()) {
     <script>
         function changeLanguage(lang) {
             window.location.href = 'index.php?lang=' + lang;
+        }
+        
+        function markNotificationRead(notificationId) {
+            const notificationElement = document.getElementById('notification-' + notificationId);
+            if (notificationElement) {
+                // إخفاء الإشعار بسلاسة
+                notificationElement.style.opacity = '0';
+                notificationElement.style.transform = 'translateX(100%)';
+                
+                setTimeout(() => {
+                    notificationElement.remove();
+                }, 300);
+                
+                // إرسال طلب AJAX لتحديث حالة الإشعار
+                fetch('mark_notification_read.php?id=' + notificationId)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            console.error('Failed to mark notification as read');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+
+        // التحقق من وضع الصيانة
+        async function checkMaintenanceMode() {
+            try {
+                const response = await fetch('/api/check-maintenance.php');
+                const data = await response.json();
+                
+                if (data.maintenance && !data.isAdmin) {
+                    showMaintenanceMode();
+                }
+            } catch (error) {
+                console.error('Error checking maintenance mode:', error);
+            }
+        }
+
+        // عرض وضع الصيانة
+        function showMaintenanceMode() {
+            const overlay = document.getElementById('maintenanceOverlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // إخفاء وضع الصيانة (للمسؤولين)
+        function hideMaintenanceMode() {
+            const overlay = document.getElementById('maintenanceOverlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
         
         document.addEventListener('DOMContentLoaded', function() {
@@ -571,6 +859,22 @@ if (isLoggedIn()) {
                     }
                 }, 30);
             });
+            
+            // إخفاء الإشعارات تلقائياً بعد 10 ثواني
+            setTimeout(() => {
+                const notifications = document.querySelectorAll('.notification-item');
+                notifications.forEach(notification => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.remove();
+                        }
+                    }, 300);
+                });
+            }, 10000);
+
+            // التحقق من وضع الصيانة عند تحميل الصفحة
+            checkMaintenanceMode();
         });
     </script>
 </body>

@@ -226,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div class="login-link">
             <p>لديك حساب بالفعل؟ <a href="login.php">تسجيل الدخول</a></p>
-            <p><a href="./index.php">Back to homme page</a></p>
+            <p><a href="./index.php">العودة</a></p>
         </div>
     </div>
 </body>
