@@ -23,6 +23,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['export_locations'])) 
 
 // تعريف المتغيرات بشكل افتراضي
 $locations = [];
+
+// Check if user is logged in
+$logged_in = false;
+if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+    $logged_in = true;
+}
+// Check if user is logged in
+$logged_in = false;
+if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+    $logged_in = true;
+}
+
+// Get display name from session - الطريقة الأسهل
+$display_name = 'مستخدم'; // قيمة افتراضية
+
+if ($logged_in) {
+    // أولوية: nom_complet من الجلسة (تم تخزينه في login.php)
+    if (isset($_SESSION['nom_complet']) && !empty($_SESSION['nom_complet'])) {
+        $display_name = $_SESSION['nom_complet'];
+    } 
+    // ثانياً: من user_info
+    elseif (isset($_SESSION['user_info']['first_name']) && !empty($_SESSION['user_info']['first_name'])) {
+        $display_name = $_SESSION['user_info']['first_name'];
+        if (isset($_SESSION['user_info']['last_name']) && !empty($_SESSION['user_info']['last_name'])) {
+            $display_name .= ' ' . $_SESSION['user_info']['last_name'];
+        }
+    }
+    // ثالثاً: من username في الجلسة
+    elseif (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+        $display_name = $_SESSION['username'];
+    }
+    // رابعاً: من email في user_info
+    elseif (isset($_SESSION['user_info']['email']) && !empty($_SESSION['user_info']['email'])) {
+        $display_name = explode('@', $_SESSION['user_info']['email'])[0];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -35,12 +71,298 @@ $locations = [];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
+        /* شريط التنقل */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4285f4;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo i {
+            margin-left: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #2a2a2a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #4285f4;
+        }
+
+        .user-menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-left: 15px;
+        }
+
+        .user-welcome { 
+            font-size: 14px; 
+            color: #666; 
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            color: black;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover { 
+            background: #ec9c9cff; 
+            border-radius: 20px;
+        }
+
+        .profile-btn {
+            padding: 8px 16px;
+            background: #34a853;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .profile-btn:hover { 
+            background: #64c47dff; 
+            border-radius: 20px;
+        }
+
+        .auth-buttons { 
+            display: flex; 
+            gap: 10px; 
+            margin-left: 15px; 
+        }
+
+        .auth-btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .login-btn { 
+            background: white; 
+            color: #4285f4; 
+            border: 1px solid #4285f4; 
+        }
+
+        .login-btn:hover { 
+            background: #f0f5ff; 
+        }
+
+        .register-btn { 
+            background: #4285f4; 
+            color: white; 
+        }
+
+        .register-btn:hover { 
+            background: #3367d6; 
+        }
+
+        .language-selector select {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+
+        .hamburger { 
+            display: none; 
+            flex-direction: column; 
+            cursor: pointer; 
+        }
+
+        .hamburger span {
+            width: 25px; 
+            height: 3px; 
+            background: #2a2a2a;
+            margin: 2px 0; 
+            transition: 0.3s;
+        }
+
+        /* قسم الهيرو */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            min-height: 40vh;
+        }
+
+        .hero-content { 
+            flex: 1; 
+            padding: 20px; 
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #666;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.9s;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary { 
+            background: #4285f4; 
+            color: white; 
+        }
+
+        .btn-primary:hover { 
+            background: #3367d6; 
+            transform: translateY(-2px); 
+        }
+
+        .btn-secondary { 
+            background: white; 
+            color: #4285f4; 
+            border: 1px solid #4285f4; 
+        }
+
+        .btn-secondary:hover { 
+            background: #f0f5ff; 
+            transform: translateY(-2px); 
+        }
+
+        /* Hero Image Intelligent Effect */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .circle-bg {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #aeebddef 60%, #c6e9ecff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(66,133,244,0.5);
+            position: relative;
+            overflow: visible;
+            opacity: 0;
+            transform: translateY(-80px) scale(0.8);
+            animation: dropIn 1.4s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .circle-bg img {
+            width: 65%;
+            height: auto;
+            border-radius: 50%;
+            z-index: 2;
+            transition: transform 0.4s ease;
+        }
+
+        .circle-bg:hover img { 
+            transform: scale(1.1) rotate(5deg); 
+        }
+
+        /* Neon Aura */
+        .circle-bg::before {
+            content: "";
+            position: absolute;
+            width: 300px; 
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(66,133,244,0.4), transparent 70%);
+            animation: pulse 3s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        /* Animations */
+        @keyframes dropIn {
+            0% { opacity: 0; transform: translateY(-80px) scale(0.8); }
+            60% { opacity: 1; transform: translateY(15px) scale(1.05); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%,100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+        }
+
+        /* محتوى البحث */
         .search-section {
             background: white;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            margin: 30px auto;
+            max-width: 1200px;
         }
         
         .search-form {
@@ -248,6 +570,60 @@ $locations = [];
         .btn-download i {
             margin-left: 8px;
         }
+        
+        .quick-cities {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .quick-cities span {
+            color: #4285f4;
+            cursor: pointer;
+            margin: 0 5px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        
+        .quick-cities span:hover {
+            background-color: #e6e9ff;
+        }
+
+        /* الفوتر */
+        .footer {
+            background: #2a2a2a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu {
+                position: fixed;
+                left: -100%; top: 70px;
+                flex-direction: column;
+                background: white;
+                width: 100%; text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 20px 0;
+            }
+            .nav-menu.active { left: 0; }
+            .nav-link { margin: 15px 0; }
+            .auth-buttons, .user-menu {
+                margin: 15px 0;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero { flex-direction: column; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .circle-bg { width: 200px; height: 200px; }
+            .circle-bg::before { width: 240px; height: 240px; }
+        }
     </style>
 </head>
 <body>
@@ -261,6 +637,22 @@ $locations = [];
                 <a href="index.php" class="nav-link"><?= $lang['home'] ?></a>
                 <a href="plan.php" class="nav-link"><?= $lang['treatment_plan'] ?></a>
                 <a href="clinics.php" class="nav-link active"><?= $lang['clinics_pharmacies'] ?></a>
+                
+                <?php if ($logged_in): ?>
+                <div class="user-menu">
+                    <span class="user-welcome"><?= $lang['welcome'] ?>, <?php echo htmlspecialchars($display_name); ?></span>
+                    <a href="profile.php" class="profile-btn">
+                        <i class="fas fa-user"></i> الملف الشخصي
+                    </a>
+                    <a href="logout.php" class="logout-btn"><?= $lang['logout'] ?></a>
+                </div>
+                <?php else: ?>
+                <div class="auth-buttons">
+                    <a href="login.php" class="auth-btn login-btn"><?= $lang['sign_in'] ?></a>
+                    <a href="register.php" class="auth-btn register-btn"><?= $lang['sign_up'] ?></a>
+                </div>
+                <?php endif; ?>
+                
                 <div class="language-selector">
                     <select onchange="changeLanguage(this.value)">
                         <option value="ar" <?= ($_SESSION['lang'] ?? 'ar') == 'ar' ? 'selected' : '' ?>>العربية</option>
@@ -277,9 +669,9 @@ $locations = [];
         </div>
     </nav>
 
+
     <!-- محتوى الصفحة -->
-    <div class="container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
-        <h1 style="text-align: center; margin-bottom: 30px;">ابحث عن العيادات والصيدليات القريبة</h1>
+    <div id="search" class="container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
         
         <div class="search-section">
             <div class="location-options">
@@ -296,6 +688,17 @@ $locations = [];
                     <input type="text" class="search-input" id="city-input" placeholder="أدخل اسم المدينة">
                     <button type="button" class="search-button" onclick="searchByCity()">بحث</button>
                 </form>
+                <div class="quick-cities">
+                    ابحث عن: 
+                    <span onclick="searchCity('الدار البيضاء')">الدار البيضاء</span> | 
+                    <span onclick="searchCity('الرباط')">الرباط</span> | 
+                    <span onclick="searchCity('مراكش')">مراكش</span> | 
+                    <span onclick="searchCity('فاس')">فاس</span> | 
+                    <span onclick="searchCity('طنجة')">طنجة</span> | 
+                    <span onclick="searchCity('أكادير')">أكادير</span> | 
+                    <span onclick="searchCity('مكناس')">مكناس</span> | 
+                    <span onclick="searchCity('وجدة')">وجدة</span>
+                </div>
             </div>
             
             <div id="current-location-info">
@@ -356,8 +759,8 @@ $locations = [];
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <script src="assets/script.js"></script>
     <script>
+        // JavaScript code remains the same as before...
         // الخريطة والمتغيرات العامة
         let map, userMarker, locations = [], clickMarker = null;
         const userLocation = { lat: 33.5731, lng: -7.5898 }; // الدار البيضاء افتراضيًا
@@ -405,80 +808,166 @@ $locations = [];
             findNearbyClinicsFromOSM(e.latlng.lat, e.latlng.lng);
         }
         
-        // البحث عن العيادات والصيدليات باستخدام Overpass API (مجاني)
-        function findNearbyClinicsFromOSM(lat, lng) {
-            const radius = 5000; // نصف قالب البحث 5 كم
-            const overpassQuery = `
-                [out:json];
-                (
-                    node["amenity"="pharmacy"](around:${radius},${lat},${lng});
-                    node["amenity"="clinic"](around:${radius},${lat},${lng});
-                    node["amenity"="hospital"](around:${radius},${lat},${lng});
-                    node["healthcare"="laboratory"](around:${radius},${lat},${lng});
-                );
-                out body;
-            `;
+        // البحث عن العيادات والصيدليات باستخدام Overpass API
+        function findNearbyClinicsFromOSM(lat, lng, cityName = null) {
+            const radius = 10000; // نصف قالب البحث 10 كم
+            
+            // بناء الاستعلام حسب البحث
+            let overpassQuery;
+            if (cityName) {
+                // إذا كان هناك اسم مدينة، نبحث داخل المدينة
+                overpassQuery = `
+                    [out:json][timeout:35];
+                    area[name="${cityName}"]->.searchArea;
+                    (
+                        node["amenity"="pharmacy"](area.searchArea);
+                        node["amenity"="clinic"](area.searchArea);
+                        node["amenity"="hospital"](area.searchArea);
+                        node["amenity"="doctors"](area.searchArea);
+                        node["healthcare"="laboratory"](area.searchArea);
+                        node["healthcare"="clinic"](area.searchArea);
+                        node["healthcare"="hospital"](area.searchArea);
+                    );
+                    out body;
+                    >;
+                    out skel qt;
+                `;
+            } else {
+                // إذا كان هناك إحداثيات، نبحث حولها
+                overpassQuery = `
+                    [out:json][timeout:35];
+                    (
+                        node["amenity"="pharmacy"](around:${radius},${lat},${lng});
+                        node["amenity"="clinic"](around:${radius},${lat},${lng});
+                        node["amenity"="hospital"](around:${radius},${lat},${lng});
+                        node["amenity"="doctors"](around:${radius},${lat},${lng});
+                        node["healthcare"="laboratory"](around:${radius},${lat},${lng});
+                        node["healthcare"="clinic"](around:${radius},${lat},${lng});
+                        node["healthcare"="hospital"](around:${radius},${lat},${lng});
+                    );
+                    out body;
+                    >;
+                    out skel qt;
+                `;
+            }
             
             const overpassUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`;
             
             fetch(overpassUrl)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    processOSMData(data, lat, lng);
+                    processOSMData(data, lat, lng, cityName);
                 })
                 .catch(error => {
                     console.error('Error fetching OSM data:', error);
                     document.getElementById('loader').style.display = 'none';
                     document.getElementById('no-results').style.display = 'block';
                     // استخدام بيانات وهمية كاحتياطي
-                    findNearbyClinics(lat, lng);
+                    findNearbyClinics(lat, lng, cityName);
                 });
         }
         
         // معالجة بيانات OSM
-        function processOSMData(data, userLat, userLng) {
+        function processOSMData(data, userLat, userLng, cityName = null) {
             locations = [];
             
             if (data.elements && data.elements.length > 0) {
+                
                 data.elements.forEach(element => {
-                    if (element.tags && element.tags.name) {
-                        let type = 'clinic';
-                        if (element.tags.amenity === 'pharmacy') type = 'pharmacy';
-                        if (element.tags.amenity === 'hospital') type = 'hospital';
-                        if (element.tags.healthcare === 'laboratory') type = 'laboratory';
-                        
-                        // حساب المسافة
-                        const distance = calculateDistance(
-                            userLat, userLng, 
-                            element.lat, element.lon
-                        ).toFixed(1);
-                        
-                        locations.push({
-                            id: element.id,
-                            name: element.tags.name,
-                            type: type,
-                            lat: element.lat,
-                            lng: element.lon,
-                            address: element.tags['addr:street'] || 'غير معروف',
-                            phone: element.tags.phone || 'غير متوفر',
-                            hours: element.tags.opening_hours || 'غير معروف',
-                            distance: distance + ' km'
-                        });
+                    if (!element.tags) return;
+                    
+                    // التحقق من وجود اسم
+                    const name = element.tags.name || 
+                                element.tags['name:ar'] || 
+                                element.tags['name:fr'] || 
+                                element.tags['name:en'] ||
+                                (element.tags.amenity === 'pharmacy' ? 'صيدلية' : 'مرفق صحي');
+                    
+                    let type = 'clinic';
+                    if (element.tags.amenity === 'pharmacy') type = 'pharmacy';
+                    else if (element.tags.amenity === 'hospital') type = 'hospital';
+                    else if (element.tags.amenity === 'clinic' || element.tags.amenity === 'doctors') type = 'clinic';
+                    else if (element.tags.healthcare === 'laboratory') type = 'laboratory';
+                    else if (element.tags.healthcare === 'clinic') type = 'clinic';
+                    else if (element.tags.healthcare === 'hospital') type = 'hospital';
+                    
+                    // بناء العنوان
+                    let address = 'غير معروف';
+                    const addressParts = [];
+                    if (element.tags['addr:street']) addressParts.push(element.tags['addr:street']);
+                    if (element.tags['addr:city']) addressParts.push(element.tags['addr:city']);
+                    if (element.tags['addr:postcode']) addressParts.push(element.tags['addr:postcode']);
+                    
+                    if (addressParts.length > 0) {
+                        address = addressParts.join(', ');
+                    } else if (cityName) {
+                        address = cityName;
                     }
+                    
+                    // حساب المسافة فقط إذا كانت هناك إحداثيات مستخدم
+                    let distance = '';
+                    if (userLat && userLng && element.lat && element.lon) {
+                        const dist = calculateDistance(userLat, userLng, element.lat, element.lon);
+                        distance = dist.toFixed(1) + ' كم';
+                    } else if (cityName) {
+                        distance = cityName;
+                    } else {
+                        distance = 'غير معروف';
+                    }
+                    
+                    // تحسين عرض ساعات العمل
+                    let hours = element.tags.opening_hours || 
+                               element.tags['opening_hours:ar'] || 
+                               element.tags['opening_hours:fr'] || 
+                               'غير معروف';
+                    
+                    // تبسيط ساعات العمل المعقدة
+                    if (hours.length > 50) {
+                        hours = hours.substring(0, 50) + '...';
+                    }
+                    
+                    locations.push({
+                        id: element.id,
+                        name: name,
+                        type: type,
+                        lat: element.lat,
+                        lng: element.lon,
+                        address: address,
+                        phone: element.tags.phone || element.tags['contact:phone'] || 'غير متوفر',
+                        hours: hours,
+                        distance: distance
+                    });
                 });
                 
-                // ترتيب النتائج حسب المسافة
-                locations.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
+                // ترتيب النتائج حسب المسافة إذا كان هناك إحداثيات
+                if (userLat && userLng) {
+                    locations.sort((a, b) => {
+                        if (a.distance && b.distance) {
+                            const aDist = parseFloat(a.distance);
+                            const bDist = parseFloat(b.distance);
+                            return isNaN(aDist) || isNaN(bDist) ? 0 : aDist - bDist;
+                        }
+                        return 0;
+                    });
+                }
                 
                 // عرض النتائج
                 displayResults(locations);
                 addMarkersToMap(locations);
                 
-                // إظهار قسم التصدير
-                document.getElementById('export-section').style.display = 'block';
-                
-                // تحديث حقل التصدير
-                document.getElementById('export-locations').value = JSON.stringify(locations);
+                // إظهار قسم التصدير إذا كانت هناك نتائج
+                if (locations.length > 0) {
+                    document.getElementById('export-section').style.display = 'block';
+                    document.getElementById('export-locations').value = JSON.stringify(locations);
+                } else {
+                    document.getElementById('export-section').style.display = 'none';
+                    document.getElementById('no-results').style.display = 'block';
+                }
             } else {
                 document.getElementById('no-results').style.display = 'block';
                 document.getElementById('export-section').style.display = 'none';
@@ -533,6 +1022,12 @@ $locations = [];
             map.setView([lat, lng], 14);
             userMarker.setLatLng([lat, lng]);
             
+            // إزالة marker النقر إذا كان موجودًا
+            if (clickMarker) {
+                map.removeLayer(clickMarker);
+                clickMarker = null;
+            }
+            
             // البحث عن العيادات القريبة
             findNearbyClinicsFromOSM(lat, lng);
         }
@@ -561,43 +1056,47 @@ $locations = [];
         }
         
         // البحث عن العيادات القريبة (بديل إذا فشل الاتصال بـ OSM)
-        function findNearbyClinics(lat, lng) {
+        function findNearbyClinics(lat, lng, cityName = null) {
             // بيانات وهمية للعيادات والصيدليات (كاحتياطي)
-            const mockData = [
-                {
-                    id: 1,
-                    name: "صيدلية النجاح",
-                    type: "pharmacy",
-                    lat: lat + 0.005,
-                    lng: lng + 0.005,
-                    address: "شارع محمد الخامس",
-                    phone: "0522 123 456",
-                    hours: "8:00 - 20:00",
-                    distance: "0.8"
-                },
-                {
-                    id: 2,
-                    name: "مستشفى ابن سينا",
-                    type: "hospital",
-                    lat: lat - 0.006,
-                    lng: lng + 0.002,
-                    address: "حي الرياض",
-                    phone: "0522 456 789",
-                    hours: "مفتوح 24/7",
-                    distance: "1.2"
-                },
-                {
-                    id: 3,
-                    name: "عيادة الأمل",
-                    type: "clinic",
-                    lat: lat + 0.003,
-                    lng: lng - 0.004,
-                    address: "شارع الحسن الثاني",
-                    phone: "0537 987 654",
-                    hours: "9:00 - 17:00",
-                    distance: "0.5"
-                }
-            ];
+            const mockData = [];
+            const city = cityName || 'هذه المنطقة';
+            
+            // إضافة 5-10 أماكن وهمية حسب المنطقة
+            const placeNames = {
+                pharmacy: ['صيدلية النجاح', 'صيدلية السلام', 'صيدلية الأمل', 'صيدلية المستقبل', 'صيدلية الخير'],
+                clinic: ['عيادة الأطباء المتخصصين', 'عيادة الرعاية الصحية', 'عيادة الأسرة', 'العيادة التخصصية', 'عيادة القلب'],
+                hospital: ['مستشفى ابن سينا', 'مستشفى الرازي', 'المستشفى الجامعي', 'مستشفى الأطفال', 'مستشفى الولادة'],
+                laboratory: ['المختبر الطبي المركزي', 'مختبر التحاليل الطبية', 'مختبر التشخيص الطبي', 'المختبر التخصصي']
+            };
+            
+            // إنشاء 8 أماكن وهمية
+            for (let i = 0; i < 8; i++) {
+                const types = ['pharmacy', 'clinic', 'hospital', 'laboratory'];
+                const type = types[Math.floor(Math.random() * types.length)];
+                const nameIndex = Math.floor(Math.random() * placeNames[type].length);
+                
+                // إحداثيات عشوائية حول النقطة الرئيسية
+                const randomLat = lat + (Math.random() - 0.5) * 0.02;
+                const randomLng = lng + (Math.random() - 0.5) * 0.02;
+                
+                // حساب المسافة
+                const distance = calculateDistance(lat, lng, randomLat, randomLng);
+                
+                mockData.push({
+                    id: i + 1,
+                    name: placeNames[type][nameIndex],
+                    type: type,
+                    lat: randomLat,
+                    lng: randomLng,
+                    address: `${city}, شارع ${Math.floor(Math.random() * 100) + 1}`,
+                    phone: `0${Math.floor(Math.random() * 900000000) + 100000000}`,
+                    hours: ['8:00 - 20:00', '9:00 - 17:00', '24/7', '8:30 - 18:30'][Math.floor(Math.random() * 4)],
+                    distance: distance.toFixed(1) + ' كم'
+                });
+            }
+            
+            // ترتيب حسب المسافة
+            mockData.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
             
             locations = mockData;
             displayResults(mockData);
@@ -634,7 +1133,7 @@ $locations = [];
                 
                 const customIcon = L.divIcon({
                     className: 'custom-icon',
-                    html: `<div style="background-color: ${iconColor}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
+                    html: `<div style="background-color: ${iconColor}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.5);"></div>`,
                     iconSize: [16, 16],
                     iconAnchor: [8, 8]
                 });
@@ -642,10 +1141,20 @@ $locations = [];
                 const marker = L.marker([location.lat, location.lng], { icon: customIcon })
                     .addTo(map)
                     .bindPopup(`
-                        <strong>${location.name}</strong><br>
-                        ${location.address}<br>
-                        ${location.phone}<br>
-                        المسافة: ${location.distance} km
+                        <div style="min-width: 200px;">
+                            <strong style="color: ${iconColor};">${location.name}</strong><br>
+                            <small>${location.type === 'pharmacy' ? 'صيدلية' : 
+                                    location.type === 'clinic' ? 'عيادة' : 
+                                    location.type === 'hospital' ? 'مستشفى' : 'مختبر'}</small><br>
+                            <hr style="margin: 5px 0;">
+                            ${location.address}<br>
+                            ${location.phone}<br>
+                            <strong>المسافة:</strong> ${location.distance}<br>
+                            <button onclick="showDirections(${location.lat}, ${location.lng})" 
+                                    style="background: ${iconColor}; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin-top: 5px; cursor: pointer;">
+                                <i class="fas fa-route"></i> إظهار الاتجاهات
+                            </button>
+                        </div>
                     `);
             });
         }
@@ -687,7 +1196,7 @@ $locations = [];
                         <p class="card-text"><i class="fas fa-clock"></i> ${location.hours}</p>
                         <span class="location-badge">${location.distance}</span>
                         <div class="distance-info">
-                            <button onclick="showDirections(${location.lat}, ${location.lng})" class="filter-btn">
+                            <button onclick="showDirections(${location.lat}, ${location.lng})" class="filter-btn" style="margin-top: 10px;">
                                 <i class="fas fa-route"></i> إظهار الاتجاهات
                             </button>
                         </div>
@@ -705,12 +1214,15 @@ $locations = [];
                     const userLat = position.coords.latitude;
                     const userLng = position.coords.longitude;
                     
-                    // فتح رابط التوجيهات في خرائط OSM
-                    window.open(`https://www.openstreetmap.org/directions?engine=osrm_car&route=${userLat}%2C${userLng}%3B${lat}%2C${lng}`, '_blank');
+                    // فتح رابط التوجيهات في خرائط Google
+                    window.open(`https://www.google.com/maps/dir/${userLat},${userLng}/${lat},${lng}`, '_blank');
+                }, () => {
+                    // فتح رابط التوجيهات من الموقع الافتراضي
+                    window.open(`https://www.google.com/maps/dir/${userLocation.lat},${userLocation.lng}/${lat},${lng}`, '_blank');
                 });
             } else {
                 // استخدام الموقع الافتراضي إذا لم يكن GPS متاحًا
-                window.open(`https://www.openstreetmap.org/directions?engine=osrm_car&route=${userLocation.lat}%2C${userLocation.lng}%3B${lat}%2C${lng}`, '_blank');
+                window.open(`https://www.google.com/maps/dir/${userLocation.lat},${userLocation.lng}/${lat},${lng}`, '_blank');
             }
         }
         
@@ -729,14 +1241,27 @@ $locations = [];
             document.getElementById('export-section').style.display = 'none';
             
             // استخدام Nominatim للبحث عن إحداثيات المدينة
-            const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city + ', Morocco')}`;
+            const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city + ', Morocco')}&accept-language=ar&limit=1`;
             
             fetch(nominatimUrl)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     if (data && data.length > 0) {
                         const lat = parseFloat(data[0].lat);
                         const lng = parseFloat(data[0].lon);
+                        const displayName = data[0].display_name;
+                        
+                        // استخراج اسم المدينة من النتائج
+                        let arabicCityName = city;
+                        const nameParts = displayName.split(',');
+                        if (nameParts.length > 0) {
+                            arabicCityName = nameParts[0].trim();
+                        }
                         
                         map.setView([lat, lng], 13);
                         userMarker.setLatLng([lat, lng]);
@@ -746,7 +1271,8 @@ $locations = [];
                             clickMarker = null;
                         }
                         
-                        findNearbyClinicsFromOSM(lat, lng);
+                        // البحث في المدينة
+                        findNearbyClinicsFromOSM(lat, lng, arabicCityName);
                     } else {
                         document.getElementById('loader').style.display = 'none';
                         document.getElementById('no-results').style.display = 'block';
@@ -756,7 +1282,37 @@ $locations = [];
                 .catch(error => {
                     console.error('Error geocoding city:', error);
                     document.getElementById('loader').style.display = 'none';
+                    // البحث باستخدام إحداثيات افتراضية للمدينة
+                    alert('حدث خطأ في البحث عن المدينة. جاري استخدام موقع افتراضي.');
+                    const defaultCities = {
+                        'الدار البيضاء': {lat: 33.5731, lng: -7.5898},
+                        'الرباط': {lat: 33.9716, lng: -6.8498},
+                        'مراكش': {lat: 31.6295, lng: -7.9811},
+                        'فاس': {lat: 34.0181, lng: -5.0078},
+                        'طنجة': {lat: 35.7595, lng: -5.8340},
+                        'أكادير': {lat: 30.4278, lng: -9.5981},
+                        'مكناس': {lat: 33.8959, lng: -5.5547},
+                        'وجدة': {lat: 34.6814, lng: -1.9086}
+                    };
+                    
+                    if (defaultCities[city]) {
+                        const coords = defaultCities[city];
+                        map.setView([coords.lat, coords.lng], 13);
+                        userMarker.setLatLng([coords.lat, coords.lng]);
+                        findNearbyClinicsFromOSM(coords.lat, coords.lng, city);
+                    } else {
+                        // استخدام الدار البيضاء كبديل
+                        map.setView([userLocation.lat, userLocation.lng], 13);
+                        userMarker.setLatLng([userLocation.lat, userLocation.lng]);
+                        findNearbyClinicsFromOSM(userLocation.lat, userLocation.lng, city);
+                    }
                 });
+        }
+        
+        // مساعد البحث عن المدينة
+        function searchCity(cityName) {
+            document.getElementById('city-input').value = cityName;
+            searchByCity();
         }
         
         // تبديل بين خيارات الموقع
@@ -782,13 +1338,20 @@ $locations = [];
                 
                 const type = this.dataset.type;
                 
+                if (locations.length === 0) return;
+                
                 if (type === 'all') {
                     displayResults(locations);
                     addMarkersToMap(locations);
                 } else {
                     const filtered = locations.filter(loc => loc.type === type);
-                    displayResults(filtered);
-                    addMarkersToMap(filtered);
+                    if (filtered.length > 0) {
+                        displayResults(filtered);
+                        addMarkersToMap(filtered);
+                    } else {
+                        document.getElementById('results').innerHTML = '';
+                        document.getElementById('no-results').style.display = 'block';
+                    }
                 }
             });
         });
@@ -796,6 +1359,43 @@ $locations = [];
         // تهيئة الخريطة عند تحميل الصفحة
         window.onload = function() {
             initMap();
+            
+            // إضافة حدث الهامبرغر
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (hamburger) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Show fallback icon if image fails to load
+            const medicalImage = document.querySelector('.circle-bg img');
+            const fallbackIcon = document.getElementById('fallback-icon');
+            
+            if (medicalImage) {
+                medicalImage.onerror = function() {
+                    this.style.display = 'none';
+                    if (fallbackIcon) {
+                        fallbackIcon.style.display = 'block';
+                    }
+                };
+            }
+            
+            // البحث التلقائي عن الموقع الحالي
+            getLocation();
         };
         
         function changeLanguage(lang) {

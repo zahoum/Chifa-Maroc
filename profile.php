@@ -257,7 +257,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_medical'])) {
                 <a href="plan.php" class="nav-link"><?= $lang['treatment_plan'] ?></a>
                 <a href="clinics.php" class="nav-link"><?= $lang['clinics_pharmacies'] ?></a>
                 <span class="nav-link active">مرحباً، <?= htmlspecialchars(getDisplayName()) ?></span>
-                <a href="profile.php" class="nav-link active"><i class="fas fa-user"></i> الملف الشخصي</a>
                 <a href="logout.php" class="nav-link"><?= $lang['logout'] ?></a>
                 <div class="language-selector">
                     <select onchange="changeLanguage(this.value)">

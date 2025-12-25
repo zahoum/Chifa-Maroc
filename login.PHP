@@ -40,6 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'phone' => $user['phone'],
                         'created_at' => $user['created_at']
                     ];
+
+                    // تخزين الاسم الكامل في الجلسة للمستخدم في clinics.php
+                        $nom_complet = trim($user['first_name'] . ' ' . $user['last_name']);
+                        $_SESSION['nom_complet'] = $nom_complet;
+                        $_SESSION['username'] = $user['email']; // أو username إذا كان موجوداً
                     
                     // تحديث آخر تسجيل دخول ومسح محاولات الدخول
                     $updateStmt = $pdo->prepare("UPDATE users SET last_login = NOW(), login_attempts = 0, account_locked_until = NULL WHERE id = ?");
@@ -79,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>

@@ -17,12 +17,18 @@ if (isset($_GET['lang']) && file_exists(__DIR__ . '/lang/'.$_GET['lang'].'.php')
 }
 
 // التحقق من تسجيل الدخول مع إعادة التوجيه - FIXED
-if (!isLoggedIn()) {
+$logged_in = false;
+if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+    $logged_in = true;
+} else {
     // Store the intended URL to redirect back after login
     $_SESSION['redirect_url'] = 'plan.php';
     header('Location: login.php');
     exit;
 }
+
+// Get display name from session
+$display_name = isset($_SESSION['username']) ? $_SESSION['username'] : 'مستخدم';
 
 // Debug information
 error_log("User accessing plan - ID: " . $_SESSION['user_id']);
@@ -420,7 +426,7 @@ function generateTreatmentPlanDisplay($plan_data) {
         .nav-logo a {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: #4285f4;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -438,29 +444,258 @@ function generateTreatmentPlanDisplay($plan_data) {
         .nav-link {
             margin: 0 15px;
             text-decoration: none;
-            color: var(--dark-color);
+            color: #2a2a2a;
             font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-link:hover, .nav-link.active {
-            color: var(--primary-color);
+            color: #4285f4;
+        }
+
+        .user-menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-left: 15px;
+        }
+
+        .user-welcome { 
+            font-size: 14px; 
+            color: #666; 
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            color: black;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover { 
+            background: #ec9c9cff; 
+            border-radius: 20px;
+        }
+
+        .profile-btn {
+            padding: 8px 16px;
+            background: #34a853;
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .profile-btn:hover { 
+            background: #64c47dff; 
+            border-radius: 20px;
+        }
+
+        .auth-buttons { 
+            display: flex; 
+            gap: 10px; 
+            margin-left: 15px; 
+        }
+
+        .auth-btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .login-btn { 
+            background: white; 
+            color: #4285f4; 
+            border: 1px solid #4285f4; 
+        }
+
+        .login-btn:hover { 
+            background: #f0f5ff; 
+        }
+
+        .register-btn { 
+            background: #4285f4; 
+            color: white; 
+        }
+
+        .register-btn:hover { 
+            background: #3367d6; 
         }
 
         .language-selector select {
             padding: 8px 12px;
             border-radius: 4px;
             border: 1px solid #ddd;
-            background-color: white;
+            background: white;
             cursor: pointer;
         }
 
+        .hamburger { 
+            display: none; 
+            flex-direction: column; 
+            cursor: pointer; 
+        }
+
+        .hamburger span {
+            width: 25px; 
+            height: 3px; 
+            background: #2a2a2a;
+            margin: 2px 0; 
+            transition: 0.3s;
+        }
+
+        /* قسم الهيرو */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            min-height: 40vh;
+        }
+
+        .hero-content { 
+            flex: 1; 
+            padding: 20px; 
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2a2a2a;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #666;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.9s;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary { 
+            background: #4285f4; 
+            color: white; 
+        }
+
+        .btn-primary:hover { 
+            background: #3367d6; 
+            transform: translateY(-2px); 
+        }
+
+        .btn-secondary { 
+            background: white; 
+            color: #4285f4; 
+            border: 1px solid #4285f4; 
+        }
+
+        .btn-secondary:hover { 
+            background: #f0f5ff; 
+            transform: translateY(-2px); 
+        }
+
+        /* Hero Image Intelligent Effect */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .circle-bg {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #aeebddef 60%, #c6e9ecff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(66,133,244,0.5);
+            position: relative;
+            overflow: visible;
+            opacity: 0;
+            transform: translateY(-80px) scale(0.8);
+            animation: dropIn 1.4s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .circle-bg img {
+            width: 65%;
+            height: auto;
+            border-radius: 50%;
+            z-index: 2;
+            transition: transform 0.4s ease;
+        }
+
+        .circle-bg:hover img { 
+            transform: scale(1.1) rotate(5deg); 
+        }
+
+        /* Neon Aura */
+        .circle-bg::before {
+            content: "";
+            position: absolute;
+            width: 300px; 
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(66,133,244,0.4), transparent 70%);
+            animation: pulse 3s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        /* Animations */
+        @keyframes dropIn {
+            0% { opacity: 0; transform: translateY(-80px) scale(0.8); }
+            60% { opacity: 1; transform: translateY(15px) scale(1.05); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%,100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+        }
+
+        /* نموذج خطة العلاج */
         .treatment-form {
             background: white;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            margin: 30px auto;
+            max-width: 1000px;
         }
         
         .form-group {
@@ -492,10 +727,12 @@ function generateTreatmentPlanDisplay($plan_data) {
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-top: 30px;
+            max-width: 1000px;
+            margin: 30px auto;
         }
         
         .btn-download {
-            background-color: var(--secondary-color);
+            background-color: #34a853;
             color: white;
             padding: 12px 24px;
             border: none;
@@ -522,7 +759,7 @@ function generateTreatmentPlanDisplay($plan_data) {
         }
         
         .plan-section h4 {
-            color: var(--primary-color);
+            color: #4285f4;
             margin-bottom: 10px;
         }
         
@@ -564,13 +801,13 @@ function generateTreatmentPlanDisplay($plan_data) {
         }
         
         .disease-option:hover {
-            border-color: var(--primary-color);
+            border-color: #4285f4;
             background-color: #f0f5ff;
         }
         
         .disease-option.selected {
-            border-color: var(--primary-color);
-            background-color: var(--primary-color);
+            border-color: #4285f4;
+            background-color: #4285f4;
             color: white;
         }
         
@@ -594,6 +831,41 @@ function generateTreatmentPlanDisplay($plan_data) {
             border-radius: 15px;
             font-size: 14px;
         }
+
+        /* الفوتر */
+        .footer {
+            background: #2a2a2a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu {
+                position: fixed;
+                left: -100%; top: 70px;
+                flex-direction: column;
+                background: white;
+                width: 100%; text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 20px 0;
+            }
+            .nav-menu.active { left: 0; }
+            .nav-link { margin: 15px 0; }
+            .auth-buttons, .user-menu {
+                margin: 15px 0;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero { flex-direction: column; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .circle-bg { width: 200px; height: 200px; }
+            .circle-bg::before { width: 240px; height: 240px; }
+        }
     </style>
 </head>
 <body>
@@ -607,13 +879,22 @@ function generateTreatmentPlanDisplay($plan_data) {
                 <a href="index.php" class="nav-link"><?= $lang['home'] ?></a>
                 <a href="plan.php" class="nav-link active"><?= $lang['treatment_plan'] ?></a>
                 <a href="clinics.php" class="nav-link"><?= $lang['clinics_pharmacies'] ?></a>
-                <?php if (isLoggedIn()): ?>
-                    <span class="nav-link"><?= $lang['welcome'] ?>، <?= htmlspecialchars(getDisplayName()) ?></span>
-                    <a href="logout.php" class="nav-link"><?= $lang['logout'] ?></a>
+                
+                <?php if ($logged_in): ?>
+                <div class="user-menu">
+                    <span class="nav-link active">مرحباً، <?= htmlspecialchars(getDisplayName()) ?></span>
+                    <a href="profile.php" class="profile-btn">
+                        <i class="fas fa-user"></i> الملف الشخصي
+                    </a>
+                    <a href="logout.php" class="logout-btn"><?= $lang['logout'] ?></a>
+                </div>
                 <?php else: ?>
-                    <a href="login.php" class="nav-link"><?= $lang['sign_in'] ?></a>
-                    <a href="register.php" class="nav-link"><?= $lang['sign_up'] ?></a>
+                <div class="auth-buttons">
+                    <a href="login.php" class="auth-btn login-btn"><?= $lang['sign_in'] ?></a>
+                    <a href="register.php" class="auth-btn register-btn"><?= $lang['sign_up'] ?></a>
+                </div>
                 <?php endif; ?>
+                
                 <div class="language-selector">
                     <select onchange="changeLanguage(this.value)">
                         <option value="ar" <?= ($_SESSION['lang'] ?? 'ar') == 'ar' ? 'selected' : '' ?>>العربية</option>
@@ -635,11 +916,11 @@ function generateTreatmentPlanDisplay($plan_data) {
         </div>
     </nav>
 
+    
     <!-- محتوى الصفحة -->
     <div class="container" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
-        <h1 style="text-align: center; margin-bottom: 30px;"><?= $lang['create_treatment_plan'] ?></h1>
         
-        <div class="treatment-form">
+        <div id="treatment-form" class="treatment-form">
             <form method="POST" id="treatmentForm">
                 <div class="form-group">
                     <label for="plan_name"><?= $lang['plan_name'] ?>:</label>
@@ -680,8 +961,6 @@ function generateTreatmentPlanDisplay($plan_data) {
                         <option value="poor" <?= (isset($_POST['condition']) && $_POST['condition'] == 'poor') ? 'selected' : '' ?>><?= $lang['poor_health'] ?></option>
                         <option value="chronic" <?= (isset($_POST['condition']) && $_POST['condition'] == 'chronic') ? 'selected' : '' ?>><?= $lang['chronic_conditions'] ?></option>
                     </select>
-                    
-
                 </div>
                 
                 <div class="form-group">
@@ -722,7 +1001,6 @@ function generateTreatmentPlanDisplay($plan_data) {
         <p>&copy; 2025 ChifaMaroc. <?= $lang['all_rights_reserved'] ?></p>
     </footer>
 
-    <script src="assets/script.js"></script>
     <script>
         // قاعدة بيانات الأمراض بالعربية
         const diseases = {
@@ -853,6 +1131,19 @@ function generateTreatmentPlanDisplay($plan_data) {
                     navMenu.classList.remove('active');
                 });
             });
+            
+            // Show fallback icon if image fails to load
+            const medicalImage = document.querySelector('.circle-bg img');
+            const fallbackIcon = document.getElementById('fallback-icon');
+            
+            if (medicalImage) {
+                medicalImage.onerror = function() {
+                    this.style.display = 'none';
+                    if (fallbackIcon) {
+                        fallbackIcon.style.display = 'block';
+                    }
+                };
+            }
         });
     </script>
 </body>

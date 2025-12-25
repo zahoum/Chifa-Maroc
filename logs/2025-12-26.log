@@ -1,0 +1,5 @@
+[2025-12-26 00:00:09] [ERROR] Failed to log user activity: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[2025-12-26 00:03:41] [ERROR] Failed to log user activity: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[2025-12-26 00:25:45] [ERROR] Failed to log user activity: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[2025-12-26 00:26:15] [ERROR] Failed to log user activity: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
+[2025-12-26 00:26:18] [ERROR] Failed to log user activity: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'chifamaroc.user_activity' doesn't exist
